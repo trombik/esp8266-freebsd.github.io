@@ -27,7 +27,7 @@ jobs:
 
       - name: Convert the original JSON to ours
         run: |
-          bundle exec convert.rb upstream/stable/package_esp8266com_index.json > stable/package_esp8266_freebsd_github_io_index.json
+          bundle exec ruby convert.rb upstream/stable/package_esp8266com_index.json > stable/package_esp8266_freebsd_github_io_index.json
 
       - name: Setup git
         run: |
