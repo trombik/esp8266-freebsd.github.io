@@ -2,6 +2,7 @@
 
 name: Update package index JSON file
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 
