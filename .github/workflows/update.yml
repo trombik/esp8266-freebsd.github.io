@@ -40,7 +40,7 @@ jobs:
         run: |
           git update-index --refresh
           if git diff-index --quiet HEAD --; then
-            git add stable/package_esp8266_freebsd_github_io_index.js
+            git add stable/package_esp8266_freebsd_github_io_index.json
             git commit -m 'update index.json'
             git push origin master
           fi
