@@ -15,6 +15,7 @@ jobs:
       - name: Checkout the upstream repository
         repository: esp8266/esp8266.github.io
         path: upstream
+        uses: actions/checkout@v2
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
