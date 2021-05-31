@@ -40,7 +40,8 @@ jobs:
         run: |
           git status
           git update-index --refresh -q
-          if git diff-index --quiet HEAD --; then
+          git diff-index --exit-code --quiet HEAD --
+          if [ $0 -ne 0 ]; then
             echo "addning..."
             git add stable/package_esp8266_freebsd_github_io_index.json
             echo "commiting..."
