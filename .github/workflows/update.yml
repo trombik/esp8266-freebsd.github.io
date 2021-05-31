@@ -1,0 +1,41 @@
+---
+
+name: Update package index JSON file
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update_json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Checkout the upstream repository
+        repository: esp8266/esp8266.github.io
+        path: upstream
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+
+      - name: Convert the original JSON to ours
+        run: |
+          bundle exec convert.rb upstream/stable/package_esp8266com_index.json > stable/package_esp8266_freebsd_github_io_index.json
+
+      - name: Setup git
+        run: |
+          git config user.name 'Github Actions (update.yml)'
+          git config user.email '<>'
+
+      - name: Commit change if any
+        run: |
+          git update-index --refresh
+          if git diff-index --quiet HEAD --; then
+            git add stable/package_esp8266_freebsd_github_io_index.js
+            git commit -m 'update index.json'
+            git push origin master
+          fi
