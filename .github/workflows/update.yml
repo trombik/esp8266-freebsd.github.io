@@ -41,7 +41,10 @@ jobs:
           git status
           git update-index --refresh -q
           if git diff-index --quiet HEAD --; then
+            echo "addning..."
             git add stable/package_esp8266_freebsd_github_io_index.json
+            echo "commiting..."
             git commit -m 'update index.json'
+            echo "pushing..."
             git push origin master
           fi
