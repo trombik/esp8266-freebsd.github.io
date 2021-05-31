@@ -39,7 +39,7 @@ jobs:
       - name: Commit change if any
         run: |
           git status
-          git update-index --refresh
+          git update-index --refresh -q
           if git diff-index --quiet HEAD --; then
             git add stable/package_esp8266_freebsd_github_io_index.json
             git commit -m 'update index.json'
